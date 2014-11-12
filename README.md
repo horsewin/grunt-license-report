@@ -7,12 +7,6 @@ Discovers all licenses used in one package and generates a small HTML report.
 
 This module uses the license-checker from davglass, to search for licenses.
 
-## Please Note:
-
-The User pdehaan pointed to me, that the part "contrib" inside the name is reserved for official grunt tasks.
-I didn't know that, at the time, I published this package and want to hereby let you know, that this is NOT an official grunt task!
-So I'm probably going to mark this one as deprecated and upload it under another name, but I'll let you know when it happened.
-
 ## Usage
 
     npm install grunt-license-report --save-dev
