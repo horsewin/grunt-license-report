@@ -19,7 +19,6 @@ var util = require('util');
  * 2) "UNKNOWN" for unknown or undefined licenses.
  *
  * 3) The whole String if none of the above is given.
- *
  */
 function parseLicense (licenseString, packageName, grunt) {
 
@@ -37,7 +36,7 @@ function parseLicense (licenseString, packageName, grunt) {
 
     if( licenseString === null || licenseString === undefined || licenseString.toLowerCase() === 'unknown' || licenseString.toLowerCase() === 'undefined') {
         grunt.log.warn('UNKNOWN LICENSE for ' + packageName);
-        return 'UNKNOWN';
+        return '<span class="error">UNKNOWN</span>';
     }
     else {
         var parts = licenseString.match(/^([A-Za-z]+).*/);

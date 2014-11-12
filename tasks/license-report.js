@@ -24,18 +24,22 @@ module.exports = function(grunt) {
         'font-family: Arial,sans-serif;\n' +
         'font-size: 14px; \n' +
         'line-height: 1.42857; \n' +
-        'padding: 0:\n' +
+        'padding: 0;\n' +
         'margin: 0;\n' +
         '}\n' +
         'table th, td {\n' +
         'text-align: left;\n' +
-        '}</style>\n</head>\n<body>\n<h1>License report for ' + project.name + ' v' + project.version + '</h1>\n<table border="1">\n<tr>\n<th>Project</th><th>License</th><th>Repository</th>\n</tr>';
+        '}\n' +
+        '.error {\n' +
+        'color: #FF0000;\n' +
+        'font-weight: bold;\n' +
+        '}</style>\n</head>\n<body>\n<h1>' + project.name + ' v' + project.version + '</h1>\n<table border="1">\n<tr>\n<th>Project</th><th>License</th><th>Repository</th>\n</tr>',
 
       /*
       * Get the name of every top node inside the json.
       * In this case, the node name is the name of the package, that we are currently looking at.
       */
-      var packageNames = Object.getOwnPropertyNames(json);
+      packageNames = Object.getOwnPropertyNames(json);
 
       packageNames.forEach(function (packageName) {
         output += '\n<tr>\n<td>' + packageName + '</td>';
