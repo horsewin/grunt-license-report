@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     "grunt-License-Report": {
       output: {
         path: './report/licenses',
-        format:'.html'
+        format:'html'
       }
     }
   });
@@ -14,4 +14,3 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['grunt-license-report']);
 
 };
-

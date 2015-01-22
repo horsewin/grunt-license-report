@@ -1,36 +1,36 @@
 {
-    "name": "grunt-license-report",
-    "version": "0.0.3",
-    "homepage": "https://github.com/Fkscorpion/grunt-license-report",
-    "author": "https://github.com/Fkscorpion/grunt-license-report/graphs/contributors",
-    "description": "Discovers all licenses used in one package and generates a small HTML report",
-    "keywords": [
-        "gruntplugin",
-        "grunt",
-        "license",
-        "find",
-        "find licenses",
-        "search",
-        "used licenses",
-        "report",
-        "finder"
-    ],
-    "dependencies": {
-        "license-checker": "2.0.1"
-    },
-    "devDependencies": {
-        "grunt": "0.4.5"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:Fkscorpion/grunt-license-report.git"
-    },
-    "licenses": [
-        {
-            "type": "MIT",
-            "url": "https://github.com/Fkscorpion/grunt-license-report/blob/master/LICENSE"
-        }
-    ],
-    "main": "./tasks/grunt-license-report",
-    "bugs": "https://github.com/Fkscorpion/grunt-license-report/issues"
+  "name": "grunt-license-report",
+  "version": "0.0.4",
+  "homepage": "https://github.com/Fkscorpion/grunt-license-report",
+  "author": "https://github.com/Fkscorpion/grunt-license-report/graphs/contributors",
+  "description": "Discovers all licenses used in one package and generates a small HTML report",
+  "keywords": [
+    "gruntplugin",
+    "grunt",
+    "license",
+    "find",
+    "find licenses",
+    "search",
+    "used licenses",
+    "report",
+    "finder"
+  ],
+  "dependencies": {
+    "license-checker": "2.0.1"
+  },
+  "devDependencies": {
+    "grunt": "0.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Fkscorpion/grunt-license-report.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/Fkscorpion/grunt-license-report/blob/master/LICENSE"
+    }
+  ],
+  "main": "./tasks/grunt-license-report",
+  "bugs": "https://github.com/Fkscorpion/grunt-license-report/issues"
 }

@@ -7,25 +7,30 @@ Discovers all licenses used in one package and generates a small HTML report.
 
 This module uses the license-checker from davglass, to search for licenses.
 
-## Usage
+## Getting Started
 
-    npm install grunt-license-report --save-dev
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+
+
+	npm install grunt-license-report --save-dev
+
+
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+
+	npm install grunt-license-report --save-dev
 
 ## Configuration
 
-### Load task
-
-    grunt.loadNpmTasks('grunt-license-report');
-
-### Set task options
-
-- `target` (mandatory): relative path to the location, where the report file will be stored.
+- `path` (mandatory): relative path to the location, where the report file will be stored and also the filename.
+- `format` (not yet implemented): output format of the file, later versions will allow you, to switch between html, json etc. currently, all output is plain HTML.
 
         // Plugin configuration(s).
-        grunt.initConfig({
-            pkg: grunt.file.readJSON('package.json'),
+		  grunt.initConfig({
+		    "grunt-License-Report": {
+		      output: {
+		        path: './report/licenses',
+		        format:'.html'
+		      }
+		    }
+		  });
 
-            "license-report": {
-                target: './report/licenses.html'
-            }
-        });
