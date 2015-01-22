@@ -52,4 +52,20 @@ function parseLicense (licenseString, packageName, grunt) {
     }
 }
 
-module.exports = parseLicense;
+/*==================================================
+ * Parses the url and replaces git.// or normal http://
+ * urls with https://
+ /==================================================*/
+ 
+function parseUrl (url) {
+  var urlRegExp = /(git:\/\/)|(http:\/\/)/;
+
+  if(urlRegExp.test(url)) {
+    return url.replace(urlRegExp, 'https://');
+  }
+
+  return url;
+}
+
+exports.parseLicense = parseLicense;
+exports.parseUrl = parseUrl;
