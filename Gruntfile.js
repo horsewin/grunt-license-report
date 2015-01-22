@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    "grunt-License-Report": {
+    "grunt-license-report": {
       output: {
         path: './report/licenses',
         format:'html'
