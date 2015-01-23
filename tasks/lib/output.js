@@ -56,8 +56,7 @@ function createHTML (json, grunt) {
   });
 
   output += '\n</table></body></html>';
-
-  console.log(output);
+  
   return output;
 
 }
