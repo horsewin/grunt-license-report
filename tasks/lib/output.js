@@ -56,7 +56,7 @@ function createHTML (json, grunt) {
   });
 
   output += '\n</table></body></html>';
-  
+
   return output;
 
 }

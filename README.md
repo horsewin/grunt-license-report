@@ -29,7 +29,7 @@ Once the task has been installed, it may be enabled inside your Gruntfile with t
 		    "grunt-License-Report": {
 		      output: {
 		        path: './report/licenses',
-		        format:'.html'
+		        format:'html'
 		      }
 		    }
 		  });

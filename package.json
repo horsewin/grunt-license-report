@@ -1,6 +1,6 @@
 {
   "name": "grunt-license-report",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "homepage": "https://github.com/Fkscorpion/grunt-license-report",
   "author": "https://github.com/Fkscorpion/grunt-license-report/graphs/contributors",
   "description": "Discovers all licenses used in one package and generates a small HTML report",
