@@ -33,4 +33,3 @@ Once the task has been installed, it may be enabled inside your Gruntfile with t
 		      }
 		    }
 		  });
-
