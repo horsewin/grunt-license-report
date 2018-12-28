@@ -28,10 +28,10 @@ function createHTML(json, grunt) {
      * Get the name of every top node inside the json.
      * In this case, the node name is the name of the package, that we are currently looking at.
      */
-    var packageNames = Object.getOwnPropertyNames(json);
+    const packageNames = Object.getOwnPropertyNames(json);
 
     packageNames.forEach(function (packageName) {
-        var repoUrl = sanitize.parseUrl(json[packageName].repository);
+        const licenseText = json[packageName].licenseText || "UNLICENSE";
 
         output += `
       <dict>
@@ -40,16 +40,10 @@ function createHTML(json, grunt) {
         <key>Type</key>
         <string>PSGroupSpecifier</string>
         <key>FooterText</key>
-        <string>${json[packageName].licenseText}</string>
+        <string>
+${licenseText}
+        </string>
       </dict>`;
-        //
-        // // Filter undefined urls
-        // if(repoUrl) {
-        //   output += '\n<td><a href="' + repoUrl + '" target="_blank">' + repoUrl + '</a></td>\n</tr>';
-        // }
-        // else {
-        //   output += '\n<td><span class="error">Undefined</span></td>\n</tr>';
-        // }
     });
 
     if (grunt.config.data['grunt-license-report'].output.font) {

@@ -3,9 +3,10 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     "grunt-license-report": {
       output: {
-        path: './ios/TmrApp/Settings.bundle/Acknowledgements',',
+        path: './report/license',
         format:'plist',
-        font: true
+        font: true,
+        ios: './ios/TmrApp/Settings.bundle/licenses'
       }
     }
   });
