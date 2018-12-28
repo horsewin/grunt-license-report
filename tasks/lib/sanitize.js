@@ -56,7 +56,7 @@ function parseLicense (licenseString, packageName, grunt) {
  * Parses the url and replaces git.// or normal http://
  * urls with https://
  /==================================================*/
- 
+
 function parseUrl (url) {
   var urlRegExp = /(git:\/\/)|(http:\/\/)/;
 
@@ -67,5 +67,27 @@ function parseUrl (url) {
   return url;
 }
 
+function parsePlist (str) {
+    if (str === null || str === undefined) {
+        return null;
+    }
+
+    const escapeMap = {
+        '>': '&gt;'
+        , '<': '&lt;'
+        , "'": '&apos;'
+        , '"': '&quot;'
+        , '&': '&amp;'
+    }
+    const ignore = ''.replace(/[^&"<>\']/g, '');
+    const pattern = '([&"<>\'])'.replace(new RegExp('[' + ignore + ']', 'g'), '');
+
+    return str.replace(new RegExp(pattern, 'g'), function(str, item) {
+        return escapeMap[item];
+    })
+
+}
+
 exports.parseLicense = parseLicense;
 exports.parseUrl = parseUrl;
+exports.parsePlist = parsePlist;

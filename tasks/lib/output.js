@@ -13,16 +13,15 @@ var sanitize = require('./sanitize');
  * and puts its contents into a html table
  /==================================================*/
 
-function createHTML(json, grunt) {
+function createPList(json, grunt) {
 
-    var output = `
-<?xml version="1.0" encoding="UTF-8"?>
+    var output =
+`<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
     <key>PreferenceSpecifiers</key>
-    <array>
-`;
+    <array>`;
 
     /*
      * Get the name of every top node inside the json.
@@ -31,19 +30,20 @@ function createHTML(json, grunt) {
     const packageNames = Object.getOwnPropertyNames(json);
 
     packageNames.forEach(function (packageName) {
-        const licenseText = json[packageName].licenseText || "UNLICENSE";
-
-        output += `
-      <dict>
-        <key>Title</key>
-        <string>${packageName}</string>
-        <key>Type</key>
-        <string>PSGroupSpecifier</string>
-        <key>FooterText</key>
-        <string>
-${licenseText}
-        </string>
-      </dict>`;
+      const licenseText =  sanitize.parsePlist(json[packageName].licenseText);
+        if (licenseText) {
+          output += `
+        <dict>
+          <key>Title</key>
+          <string>${packageName}</string>
+          <key>Type</key>
+          <string>PSGroupSpecifier</string>
+          <key>FooterText</key>
+          <string>
+  ${licenseText}
+          </string>
+        </dict>`;  
+        }
     });
 
     if (grunt.config.data['grunt-license-report'].output.font) {
@@ -71,4 +71,4 @@ ${licenseText}
 }
 
 
-exports.createHTML = createHTML;
+exports.createPList = createPList;

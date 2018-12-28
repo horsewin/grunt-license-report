@@ -18,11 +18,12 @@ module.exports = function (grunt) {
         // Start the license-checker, which gives back a .json file, with all found licenses
         checker.init({
             start: './',
-            customPath: "./customFormat.json"
+            customPath: "./customFormat.json",
+            production: grunt.config.data['grunt-license-report'].output.production
         }, function processLicenseJson(err, json) {
 
             let fileOutputPath = null;
-            const fileOutputData = output.createHTML(json, grunt);
+            const fileOutputData = output.PList(json, grunt);
 
             if (grunt.config.data['grunt-license-report'].output.ios &&
             grunt.config.data['grunt-license-report'].output.format) {

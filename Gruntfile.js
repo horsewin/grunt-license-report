@@ -6,7 +6,8 @@ module.exports = function(grunt) {
         path: './report/license',
         format:'plist',
         font: true,
-        ios: './ios/Settings.bundle/licenses'
+        ios: './ios/Settings.bundle/licenses',
+        production: true
       }
     }
   });
