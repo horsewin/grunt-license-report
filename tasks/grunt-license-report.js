@@ -23,7 +23,7 @@ module.exports = function (grunt) {
         }, function processLicenseJson(err, json) {
 
             let fileOutputPath = null;
-            const fileOutputData = output.PList(json, grunt);
+            const fileOutputData = output.createPList(json, grunt);
 
             if (grunt.config.data['grunt-license-report'].output.ios &&
             grunt.config.data['grunt-license-report'].output.format) {
