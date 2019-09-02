@@ -29,11 +29,15 @@ function createPList(json, grunt) {
    */
   const packageNames = Object.getOwnPropertyNames(json);
 
+  const packageList = [];
   packageNames.forEach(function(packageName) {
+
     const repository = sanitize.parsePlist(json[packageName].repository);
+    const repositoryText = repository ? "|- repository: "+ repository : "";
     const publisher = sanitize.parsePlist(json[packageName].publisher);
-    const licenseText = sanitize.parsePlist(json[packageName].licenses);
-    if (licenseText) {
+    const publisherText = publisher ? "|- publisher: "+ publisher : "";
+    const licenses = sanitize.parsePlist(json[packageName].licenses);
+    if (licenses) {
       output += `
         <dict>
           <key>Title</key>
@@ -41,29 +45,26 @@ function createPList(json, grunt) {
           <key>Type</key>
           <string>PSGroupSpecifier</string>
           <key>FooterText</key>
-          <string>
-           ├─ licenses: ${licenseText}
-           ├─ repository: ${repository}
-           ├─ publisher: ${publisher}
-        </string>
+          <string>|- licenses: ${licenses}
+${repositoryText}
+${publisherText}</string>
         </dict>`;
         }
   });
 
   if (grunt.config.data["grunt-license-report"].output.font) {
     output += `
-        < dict >
-        < key > Title < /key>
-        < string > Google;
+        <dict>
+        <key> Title </key>
+        <string> Google;
       Noto;
-      Fonts < /string>
-      < key > Type < /key>
-      < string > PSGroupSpecifier < /string>
-      < key > FooterText < /key>
-      < string > https;
+      Fonts </string>
+      <key> Type </key>
+      <string > PSGroupSpecifier </string>
+      <key > FooterText </key>
+      <string> https;
     ://ja.osdn.net/projects/opensource/wiki/SIL_Open_Font_License_1.1</string>
-    <
-      /dict>`;;
+    </dict>`;;
     }
 
     output += `
