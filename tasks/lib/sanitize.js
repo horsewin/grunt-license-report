@@ -68,7 +68,7 @@ function parseUrl (url) {
 }
 
 function parsePlist (str) {
-    if (str === null || str === undefined) {
+    if (str === null || str === undefined || typeof str !== "string") {
         return null;
     }
 

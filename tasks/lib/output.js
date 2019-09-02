@@ -3,9 +3,9 @@
  /=======================================*/
 
 /*jslint node: true */
-'use strict';
+"use strict";
 
-var sanitize = require('./sanitize');
+var sanitize = require("./sanitize");
 
 
 /*==================================================
@@ -15,24 +15,26 @@ var sanitize = require('./sanitize');
 
 function createPList(json, grunt) {
 
-    var output =
-`<?xml version="1.0" encoding="UTF-8"?>
+  var output =
+    `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
     <key>PreferenceSpecifiers</key>
     <array>`;
 
-    /*
-     * Get the name of every top node inside the json.
-     * In this case, the node name is the name of the package, that we are currently looking at.
-     */
-    const packageNames = Object.getOwnPropertyNames(json);
+  /*
+   * Get the name of every top node inside the json.
+   * In this case, the node name is the name of the package, that we are currently looking at.
+   */
+  const packageNames = Object.getOwnPropertyNames(json);
 
-    packageNames.forEach(function (packageName) {
-      const licenseText =  sanitize.parsePlist(json[packageName].licenseText);
-        if (licenseText) {
-          output += `
+  packageNames.forEach(function(packageName) {
+    const repository = sanitize.parsePlist(json[packageName].repository);
+    const publisher = sanitize.parsePlist(json[packageName].publisher);
+    const licenseText = sanitize.parsePlist(json[packageName].licenses);
+    if (licenseText) {
+      output += `
         <dict>
           <key>Title</key>
           <string>${packageName}</string>
@@ -40,22 +42,28 @@ function createPList(json, grunt) {
           <string>PSGroupSpecifier</string>
           <key>FooterText</key>
           <string>
-  ${licenseText}
-          </string>
-        </dict>`;  
-        }
-    });
-
-    if (grunt.config.data['grunt-license-report'].output.font) {
-      output += `
-        <dict>
-          <key>Title</key>
-          <string>Google Noto Fonts</string>
-          <key>Type</key>
-          <string>PSGroupSpecifier</string>
-          <key>FooterText</key>
-          <string>https://ja.osdn.net/projects/opensource/wiki/SIL_Open_Font_License_1.1</string>
+           ├─ licenses: ${licenseText}
+           ├─ repository: ${repository}
+           ├─ publisher: ${publisher}
+        </string>
         </dict>`;
+        }
+  });
+
+  if (grunt.config.data["grunt-license-report"].output.font) {
+    output += `
+        < dict >
+        < key > Title < /key>
+        < string > Google;
+      Noto;
+      Fonts < /string>
+      < key > Type < /key>
+      < string > PSGroupSpecifier < /string>
+      < key > FooterText < /key>
+      < string > https;
+    ://ja.osdn.net/projects/opensource/wiki/SIL_Open_Font_License_1.1</string>
+    <
+      /dict>`;;
     }
 
     output += `
@@ -68,7 +76,7 @@ function createPList(json, grunt) {
 </plist>`;
 
     return output;
-}
+  }
 
 
-exports.createPList = createPList;
+  exports.createPList = createPList;
