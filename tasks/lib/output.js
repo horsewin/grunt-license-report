@@ -31,6 +31,18 @@ function createPList(json, grunt) {
 
   const packageList = [];
   packageNames.forEach(function(packageName) {
+    const splitPackage = packageName.split("@");
+    let name;
+    if(packageName.indexOf("@")===0){
+      name ="@" + splitPackage[1];
+    }else{
+      name =splitPackage[0];
+    }
+
+    if(packageList.includes(name)){
+      return;
+    }
+    packageList.push(name);
 
     const repository = sanitize.parsePlist(json[packageName].repository);
     const repositoryText = repository ? "|- repository: "+ repository : "";
@@ -41,7 +53,7 @@ function createPList(json, grunt) {
       output += `
         <dict>
           <key>Title</key>
-          <string>${packageName}</string>
+          <string>${name}</string>
           <key>Type</key>
           <string>PSGroupSpecifier</string>
           <key>FooterText</key>
@@ -49,7 +61,7 @@ function createPList(json, grunt) {
 ${repositoryText}
 ${publisherText}</string>
         </dict>`;
-        }
+    }
   });
 
   if (grunt.config.data["grunt-license-report"].output.font) {
